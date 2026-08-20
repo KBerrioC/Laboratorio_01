@@ -97,9 +97,9 @@ evidencias/network.png
 
 Inclúyala aquí:
 
-``` markdown
-![Recursos cargados por la aplicación](evidencias/network.png)
-```
+ markdown
+![Recursos cargados por la aplicación](Evidencias/network.png.png)
+
 
 ### Análisis
 
@@ -145,9 +145,9 @@ evidencias/request.png
 
 Inclúyala en el informe:
 
-``` markdown
-![Análisis de la solicitud HTTP](evidencias/request.png)
-```
+ markdown
+![Análisis de la solicitud HTTP](Evidencias/Request.png.png)
+
 
 ### Análisis
 
@@ -211,9 +211,9 @@ evidencias/dom.png
 
 Inclúyala aquí:
 
-``` markdown
-![Inspección y modificación del DOM](evidencias/dom.png)
-```
+markdown
+![Inspección y modificación del DOM](Evidencias/Dom.png.png)
+
 
 ### Análisis
 
@@ -275,9 +275,9 @@ evidencias/interaccion.png
 
 Inclúyala aquí:
 
-``` markdown
-![Interacción observada en Network](evidencias/interaccion.png)
-```
+ markdown
+![Interacción observada en Network](Evidencias/Interacción.png.png)
+
 
 ### Análisis
 
