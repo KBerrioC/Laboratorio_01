@@ -73,15 +73,19 @@ documento HTML, CSS, JavaScript, imágenes, fuentes u otros.
 
 Complete la tabla:
 
-  Recurso   Tipo   Dominio     Tamaño
+  | Recurso                   | Tipo           | Dominio     | Tamaño
   --------- ------ --------- --------
-                             
+  | formatos-institucionales/ | HTML           | itm.edu.co  | 125 KB |
+  | m-el_main_css             | CSS            | itm.edu.co  | 4.2 KB |
+  | m-el_main                 | JavaScript     | itm.edu.co  | 93.2 KB |
+  | icfes.jpg                 | Imagen (JPEG)  | itm.edu.co  | 16.7 KB |
+  | fa-solid-900.woff2        | Fuente (WOFF2) | all.min.css | 78.6 KB |                           
                              
                              
                              
                              
 
-**Total de solicitudes observadas:** `_____`
+**Total de solicitudes observadas:** `_127_`
 
 ## Evidencia
 
@@ -101,7 +105,7 @@ Inclúyala aquí:
 
 **¿Por qué una sola URL puede generar múltiples solicitudes HTTP?**
 
-> Escriba aquí su respuesta.
+> Una sola URL genera múltiples solicitudes HTTP porque el navegador no solo descarga el archivo HTML principal, sino también todos los elementos adicionales que este archivo necesita para mostrar y hacer funcionar la página por completo.
 
 ------------------------------------------------------------------------
 
@@ -114,22 +118,22 @@ Identifique la información solicitada a continuación.
 
   Elemento              Resultado
   --------------------- -----------
-  URL                   
-  Método HTTP           
-  Código de estado      
-  Host / dominio        
-  Tipo de recurso       
-  Tiempo de respuesta   
+  URL                   https://www.itm.edu.co/formatos-institucionales/
+  Método HTTP           GET
+  Código de estado      200 OK
+  Host / dominio        www.itm.edu.co 
+  Tipo de recurso       text/html; charset=UTF-8
+  Tiempo de respuesta   93138 bytes (gzip)
 
 ## Flujo que se está observando
 
-``` mermaid
+ mermaid
 sequenceDiagram
     participant N as Navegador
     participant S as Servidor
-    N->>S: Solicitud HTTP
-    S-->>N: Respuesta HTTP
-```
+    N->>S: Solicitud HTTP GET
+    S-->>N: Respuesta HTTP 200 OK
+
 
 ## Evidencia
 
@@ -149,12 +153,12 @@ Inclúyala en el informe:
 
 **¿Qué recurso solicitó el navegador?**
 
-> Escriba aquí su respuesta.
+> El navegador solicitó el documento HTML principal de la página de formatos institucionales del ITM. Hizo una solicitud GET a la URL https://www.itm.edu.co/formatos-institucionales/, que es el archivo HTML que contiene la estructura y contenido de la página web.
 
 **¿Qué información permite determinar si la solicitud fue atendida
 correctamente?**
 
-> Escriba aquí su respuesta.
+> El código 200 significa que el servidor encontró exitosamente el recurso solicitado y lo envió al navegador sin problemas.
 
 ------------------------------------------------------------------------
 
@@ -179,13 +183,13 @@ Utilizando **Elementos / Elements**:
 
 ## Resultados
 
-**Elemento seleccionado:** `____________________________`
+**Elemento seleccionado:** `____Boton de descargar____`
 
-**Etiqueta HTML:** `____________________________`
+**Etiqueta HTML:** `_______<a>___________`
 
-**Contenido original:** `____________________________`
+**Contenido original:** `_______Descargar_______`
 
-**Modificación realizada:** `____________________________`
+**Modificación realizada:** `____Bajar la vuelta____`
 
 El proceso observado puede representarse conceptualmente así:
 
@@ -216,7 +220,7 @@ Inclúyala aquí:
 **¿La modificación realizada sobre el DOM alteró permanentemente la
 aplicación o los archivos almacenados en el servidor? Justifique.**
 
-> Escriba aquí su respuesta.
+> No. La modificación fue completamente temporal y solo existe en la copia del DOM que el navegador construyó en memoria (RAM) para esa sesión.
 
 ------------------------------------------------------------------------
 
