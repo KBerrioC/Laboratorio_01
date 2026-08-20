@@ -243,12 +243,12 @@ Observe si aparece una nueva solicitud en Network.
 
   Elemento                       Resultado
   ------------------------------ -----------
-  Acción realizada               
-  ¿Generó una nueva solicitud?   
-  URL solicitada                 
-  Método HTTP                    
-  Código de estado               
-  Tipo de respuesta              
+  Acción realizada               Clic en el enlace "Descargar"delformato`presentacion2026.pptx`
+  ¿Generó una nueva solicitud?   Sí
+  URL solicitada                 https://www.google-analytics.com/g/collect?...
+  Método HTTP                    POST
+  Código de estado               204 no content
+  Tipo de respuesta              Vacía
 
 ## Ciclo de interacción
 
@@ -284,7 +284,7 @@ Inclúyala aquí:
 **Explique la relación entre la acción realizada por el usuario y la
 solicitud observada.**
 
-> Escriba aquí su respuesta.
+> Al hacer clic en el enlace de descarga, un script de Google Analytics previamente cargado en la página detectó ese clic mediante un "listener" de eventos y, sin recargar la página, disparó automáticamente una solicitud HTTP en segundo plano hacia `google-analytics.com`.
 
 ------------------------------------------------------------------------
 
@@ -303,10 +303,17 @@ El diagrama deberá incluir, cuando corresponda:
 
 Reemplace el siguiente bloque con su diagrama:
 
-``` mermaid
+ mermaid
 flowchart LR
-    A[Construya aquí] --> B[su flujo observado]
-```
+    U[Usuario] -->|clic en enlace Descargar| N[Navegador]
+    N -->|localiza nodo en| D[DOM]
+    D -->|dispara evento de clic| J[JavaScript de Analytics]
+    J -->|Solicitud HTTP POST| S[Servidor de Google Analytics]
+    S -->|Respuesta HTTP 204 No Content| J
+    N -->|Solicitud HTTP GET del archivo| SV[Servidor ITM]
+    SV -->|Respuesta HTTP 200 OK + archivo| N
+    N -->|actualiza| I[Interfaz - descarga iniciada]
+    I --> U
 
 ------------------------------------------------------------------------
 
@@ -319,15 +326,15 @@ Clasifique sus hallazgos:
 
 ## Elementos observados directamente
 
--   
--   
--   
+- Las solicitudes HTTP realizadas por el navegador y sus respuestas (URL, método, código de estado, tipo de recurso).
+-   La estructura HTML del DOM, incluida la etiqueta `<a>` del botón de descarga y sus atributos (`href`, `target`, estilos en línea).
+-   El efecto inmediato de una interacción del usuario sobre el tráfico de red, comprobando que se dispara una nueva solicitud sin recargar la página. 
 
 ## Elementos inferidos
 
--   
--   
--   
+-   Qué hace Google con los datos recibidos en el servidor de Analytics (cómo los almacena, procesa o agrega) no es visible desde el navegador, solo se sabe que los datos fueron enviados.
+-   La lógica interna del servidor de ITM para procesar la solicitud del archivo `.pptx` (por ejemplo, si viene de un sistema de archivos plano o de algún control de acceso) — solo se observa la respuesta, no el procesamiento interno.
+-   La existencia de una base de datos o sistema de gestión de contenido (WordPress) detrás de la página, porque no se puede comprobar directamente accediendo al backend. 
 
 > No presente como observado un proceso interno que las herramientas del
 > navegador no permitan comprobar directamente.
@@ -338,9 +345,9 @@ Clasifique sus hallazgos:
 
 Redacte **tres conclusiones técnicas** derivadas de la práctica.
 
-1.  
-2.  
-3.  
+1.  Una sola acción visible del usuario (un clic) puede generar múltiples solicitudes HTTP simultáneas hacia servidores distintos: una hacia el servidor que aloja el recurso solicitado (itm.edu.co) y otra hacia un servicio externo de analítica (Google Analytics), lo que evidencia que una aplicación web moderna rara vez depende de un único servidor.  
+2.  El código de estado HTTP es la principal señal para determinar si una solicitud fue atendida correctamente: un 200 OK confirma la entrega exitosa de un recurso completo, mientras que un 204 No Content confirma que el servidor recibió y procesó la solicitud aunque no devuelva contenido.
+3.  Las modificaciones realizadas sobre el DOM desde las herramientas de desarrollo no afectan al servidor ni a los archivos publicados, porque el DOM es una representación en memoria que el navegador reconstruye únicamente a partir del HTML original en cada carga; esto separa claramente la "vista" que puede manipular el cliente de la "fuente de verdad" que permanece en el servidor.  
 
 Las conclusiones deben explicar lo aprendido a partir de la evidencia y
 no limitarse a describir las actividades realizadas.
@@ -363,15 +370,15 @@ laboratorio-01/
 
 Antes de entregar, verifique:
 
--   [ ] El `README.md` se visualiza correctamente en GitHub.
--   [ ] Las imágenes se muestran dentro del README.
--   [ ] Se documentaron al menos cinco recursos.
--   [ ] Se analizó una solicitud HTTP.
--   [ ] Se identificó y modificó un elemento del DOM.
--   [ ] Se analizó una interacción de la aplicación.
--   [ ] El diagrama final corresponde a lo observado.
--   [ ] Se diferenciaron elementos observados e inferidos.
--   [ ] Se redactaron tres conclusiones técnicas.
+-   [x] El `README.md` se visualiza correctamente en GitHub.
+-   [x] Las imágenes se muestran dentro del README.
+-   [x] Se documentaron al menos cinco recursos.
+-   [x] Se analizó una solicitud HTTP.
+-   [x] Se identificó y modificó un elemento del DOM.
+-   [x] Se analizó una interacción de la aplicación.
+-   [x] El diagrama final corresponde a lo observado.
+-   [x] Se diferenciaron elementos observados e inferidos.
+-   [x] Se redactaron tres conclusiones técnicas.
 -   [ ] Se realizó `commit` y `push` al repositorio.
 
 ------------------------------------------------------------------------
